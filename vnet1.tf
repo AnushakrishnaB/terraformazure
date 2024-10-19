@@ -1,56 +1,34 @@
 resource "azurerm_virtual_network" "vnet1" {
-  name                = "vnet1"
-  location            = azurerm_resource_group.devopsb28rg1.location
-  resource_group_name = azurerm_resource_group.devopsb28rg1.name
-  address_space       = ["10.28.0.0/16", "10.29.0.0/16"]
-  dns_servers         = ["8.8.8.8", "8.8.4.4"]
+  name                = var.vnet1_name
+  location            = var.location
+  resource_group_name = var.rg_name
+  address_space       = [var.vnet_cidr_block]
+  dns_servers         = [var.dns1, var.dns2]
 
   tags = {
-    environment = "Development"
+    environment = var.environment
   }
 }
 resource "azurerm_subnet" "subnet-1" {
-  name                 = "subnet-1"
-  resource_group_name  = azurerm_resource_group.devopsb28rg1.name
-  virtual_network_name = azurerm_virtual_network.vnet1.name
-  address_prefixes     = ["10.28.1.0/24"]
+  name                 = var.subnet-1
+  resource_group_name  = var.rg_name
+  virtual_network_name = var.vnet1_name
+  address_prefixes     = [var.subnet1_cidr]
 
 }
 resource "azurerm_subnet" "subnet-2" {
-  name                 = "subnet-2"
-  resource_group_name  = azurerm_resource_group.devopsb28rg1.name
-  virtual_network_name = azurerm_virtual_network.vnet1.name
-  address_prefixes     = ["10.28.2.0/24"]
+  name                 = var.subnet-2
+  resource_group_name  = var.rg_name
+  virtual_network_name = var.vnet1_name
+  address_prefixes     = [var.subnet2_cidr]
 
 }
-
 resource "azurerm_subnet" "subnet-3" {
-  name                 = "subnet-3"
-  resource_group_name  = azurerm_resource_group.devopsb28rg1.name
-  virtual_network_name = azurerm_virtual_network.vnet1.name
-  address_prefixes     = ["10.29.1.0/24"]
-
-}
-resource "azurerm_subnet" "subnet-4" {
-  name                 = "subnet-4"
-  resource_group_name  = azurerm_resource_group.devopsb28rg1.name
-  virtual_network_name = azurerm_virtual_network.vnet1.name
-  address_prefixes     = ["10.29.2.0/24"]
+  name                 = var.subnet-3
+  resource_group_name  = var.rg_name
+  virtual_network_name = var.vnet1_name
+  address_prefixes     = [var.subnet3_cidr]
 
 }
 
-resource "azurerm_subnet" "subnet-5" {
-  name                 = "subnet-5"
-  resource_group_name  = azurerm_resource_group.devopsb28rg1.name
-  virtual_network_name = azurerm_virtual_network.vnet1.name
-  address_prefixes     = ["10.29.3.0/24"]
 
-}
-
-resource "azurerm_subnet" "subnet-6" {
-  name                 = "subnet-6"
-  resource_group_name  = azurerm_resource_group.devopsb28rg1.name
-  virtual_network_name = azurerm_virtual_network.vnet1.name
-  address_prefixes     = ["10.29.4.0/24"]
-
-}
