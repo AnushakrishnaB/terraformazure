@@ -31,4 +31,13 @@ resource "azurerm_subnet" "subnet-3" {
 
 }
 
+resource "azurerm_subnet" "subnet-4" {
+  name                 = var.subnet-4_name
+  resource_group_name  = azurerm_resource_group.devopsb28tf.name
+  virtual_network_name = azurerm_virtual_network.vnet1.name
+  address_prefixes     = [var.subnet4_cidr]
+
+}
+
+
 
