@@ -11,4 +11,6 @@ variable "subnet-2_name" {}
 variable "subnet2_cidr" {}
 variable "subnet-3_name" {}
 variable "subnet3_cidr" {}
+variable "subnet-4_name" {}
+variable "subnet4_cidr" {}
 
